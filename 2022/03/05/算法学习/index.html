@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.10.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+  <meta name="description" content="title:算法学习1 哈希表1.1 map常用用法1.1.1 定义1map&lt;typename1, typename2&gt; mp;  第一个是键的类型，第二个是值的类型。 1.1.2 元素访问(1) 通过下标访问 12map&lt;char, int&gt; mp;mp[&amp;#x27;c&amp;#x27;] &#x3D; 20;  (2) 通过迭代器访问 1234for(mpa&lt;char, int">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2022/03/05/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="title:算法学习1 哈希表1.1 map常用用法1.1.1 定义1map&lt;typename1, typename2&gt; mp;  第一个是键的类型，第二个是值的类型。 1.1.2 元素访问(1) 通过下标访问 12map&lt;char, int&gt; mp;mp[&amp;#x27;c&amp;#x27;] &#x3D; 20;  (2) 通过迭代器访问 1234for(mpa&lt;char, int">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-03-04T16:18:43.924Z">
+<meta property="article:modified_time" content="2022-03-04T16:30:17.737Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2022/03/05/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2022/03/05/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/","path":"2022/03/05/算法学习/","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title> | Hexo</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#title-%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.</span> <span class="nav-text">title:算法学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="nav-number">2.</span> <span class="nav-text">1 哈希表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-map%E5%B8%B8%E7%94%A8%E7%94%A8%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 map常用用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1-%E5%AE%9A%E4%B9%89"><span class="nav-number">2.2.</span> <span class="nav-text">1.1.1 定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2-%E5%85%83%E7%B4%A0%E8%AE%BF%E9%97%AE"><span class="nav-number">2.3.</span> <span class="nav-text">1.1.2 元素访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-3-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0"><span class="nav-number">2.4.</span> <span class="nav-text">1.1.3 常用函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-unordered-map"><span class="nav-number">3.</span> <span class="nav-text">1.2 unordered_map</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0"><span class="nav-number">3.1.</span> <span class="nav-text">1.2.1 常用函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E9%80%92%E5%BD%92"><span class="nav-number">4.</span> <span class="nav-text">2 递归</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%89%8D%E7%BC%80"><span class="nav-number">4.1.</span> <span class="nav-text">2.1 最长公共前缀</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8"><span class="nav-number">4.2.</span> <span class="nav-text">2.2 合并两个有序链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86"><span class="nav-number">4.3.</span> <span class="nav-text">2.3 二叉树遍历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">4.4.</span> <span class="nav-text">2.4 对称二叉树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6"><span class="nav-number">4.5.</span> <span class="nav-text">2.5 二叉树的最大深度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-%E7%9B%B8%E5%90%8C%E7%9A%84%E6%A0%91"><span class="nav-number">4.6.</span> <span class="nav-text">2.6 相同的树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-%E5%B0%86%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E8%BD%AC%E6%8D%A2%E4%B8%BA%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91"><span class="nav-number">4.7.</span> <span class="nav-text">2.7 将有序数组转换为二叉搜索树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-8-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">4.8.</span> <span class="nav-text">2.8 平衡二叉树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-9-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E6%B7%B1%E5%BA%A6"><span class="nav-number">4.9.</span> <span class="nav-text">2.9 二叉树的最小深度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%A0%88"><span class="nav-number">5.</span> <span class="nav-text">3 栈</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7"><span class="nav-number">5.1.</span> <span class="nav-text">3.1 有效的括号</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%8F%8C%E6%8C%87%E9%92%88"><span class="nav-number">6.</span> <span class="nav-text">4 双指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E5%88%A0%E9%99%A4%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9"><span class="nav-number">6.1.</span> <span class="nav-text">4.1 删除有序数组中的重复项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84"><span class="nav-number">6.2.</span> <span class="nav-text">4.2 合并两个有序数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8"><span class="nav-number">6.3.</span> <span class="nav-text">4.3 环形链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8"><span class="nav-number">6.4.</span> <span class="nav-text">4.4 盛最多水的容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="nav-number">6.5.</span> <span class="nav-text">4.5 三数之和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-6-%E6%9C%80%E6%8E%A5%E8%BF%91%E7%9A%84%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="nav-number">6.6.</span> <span class="nav-text">4.6 最接近的三数之和</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">7.</span> <span class="nav-text">5 字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-KMP%EF%BC%88%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%EF%BC%89%E7%AE%97%E6%B3%95"><span class="nav-number">7.1.</span> <span class="nav-text">5.1 KMP（字符串匹配）算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-1-next%E6%95%B0%E7%BB%84"><span class="nav-number">7.1.1.</span> <span class="nav-text">5.1.1 next数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-2-KMP%E7%AE%97%E6%B3%95"><span class="nav-number">7.1.2.</span> <span class="nav-text">5.1.2 KMP算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E5%B8%B8%E8%A7%81%E6%93%8D%E4%BD%9C"><span class="nav-number">7.2.</span> <span class="nav-text">5.2 常见操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-1-%E5%8F%8D%E8%BD%AC"><span class="nav-number">7.2.1.</span> <span class="nav-text">5.2.1 反转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-2-%E5%B0%BE%E9%83%A8%E5%8A%A0%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="nav-number">7.2.2.</span> <span class="nav-text">5.2.2 尾部加入数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-3-ctype-h"><span class="nav-number">7.2.3.</span> <span class="nav-text">5.2.3 ctype.h</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="nav-number">8.</span> <span class="nav-text">6 动态规划</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C"><span class="nav-number">8.1.</span> <span class="nav-text">6.1 最大子序和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-%E7%88%AC%E6%A5%BC%E6%A2%AF"><span class="nav-number">8.2.</span> <span class="nav-text">6.2 爬楼梯</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA"><span class="nav-number">8.3.</span> <span class="nav-text">6.3 买卖股票的最佳时机</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E6%9F%A5%E6%89%BE"><span class="nav-number">9.</span> <span class="nav-text">7 查找</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="nav-number">9.1.</span> <span class="nav-text">7.1 二分查找</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#7-1-1-x%E7%9A%84%E5%B9%B3%E6%96%B9%E6%A0%B9"><span class="nav-number">9.1.1.</span> <span class="nav-text">7.1.1 x的平方根</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E5%88%86%E6%B2%BB"><span class="nav-number">10.</span> <span class="nav-text">8 分治</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8%E8%BD%AC%E6%8D%A2%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A0%E6%A0%91"><span class="nav-number">10.1.</span> <span class="nav-text">8.1 有序链表转换二叉搜素树</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95"><span class="nav-number">11.</span> <span class="nav-text">9 贪心算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#9-1-%E5%88%86%E9%85%8D%E9%97%AE%E9%A2%98"><span class="nav-number">11.1.</span> <span class="nav-text">9.1 分配问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-1-1-Assign-Cookies%EF%BC%88455%EF%BC%89"><span class="nav-number">11.1.1.</span> <span class="nav-text">9.1.1 Assign Cookies（455）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-1-2-Candy%EF%BC%88135%EF%BC%89"><span class="nav-number">11.1.2.</span> <span class="nav-text">9.1.2 Candy（135）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-1-3-%E7%A7%8D%E8%8A%B1%E9%97%AE%E9%A2%98%EF%BC%88605%EF%BC%89"><span class="nav-number">11.1.3.</span> <span class="nav-text">9.1.3 种花问题（605）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-2-%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98"><span class="nav-number">11.2.</span> <span class="nav-text">9.2 区间问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-2-1-Non-overlapping-Intervals-435"><span class="nav-number">11.2.1.</span> <span class="nav-text">9.2.1 Non-overlapping Intervals(435)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-2-2-%E7%94%A8%E6%9C%80%E5%B0%91%E6%95%B0%E9%87%8F%E7%9A%84%E7%AE%AD%E5%BC%95%E7%88%86%E6%B0%94%E7%90%83%EF%BC%88452%EF%BC%89"><span class="nav-number">11.2.2.</span> <span class="nav-text">9.2.2 用最少数量的箭引爆气球（452）</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/05/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-03-05 00:18:43 / Modified: 00:30:17" itemprop="dateCreated datePublished" datetime="2022-03-05T00:18:43+08:00">2022-03-05</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <hr>
+<h2 id="title-算法学习"><a href="#title-算法学习" class="headerlink" title="title:算法学习"></a>title:算法学习</h2><h2 id="1-哈希表"><a href="#1-哈希表" class="headerlink" title="1 哈希表"></a>1 哈希表</h2><h3 id="1-1-map常用用法"><a href="#1-1-map常用用法" class="headerlink" title="1.1 map常用用法"></a>1.1 map常用用法</h3><h3 id="1-1-1-定义"><a href="#1-1-1-定义" class="headerlink" title="1.1.1 定义"></a>1.1.1 定义</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">map&lt;typename1, typename2&gt; mp;</span><br></pre></td></tr></table></figure>
+
+<p>第一个是键的类型，第二个是值的类型。</p>
+<h3 id="1-1-2-元素访问"><a href="#1-1-2-元素访问" class="headerlink" title="1.1.2 元素访问"></a>1.1.2 元素访问</h3><p>(1) 通过下标访问</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">map&lt;<span class="type">char</span>, <span class="type">int</span>&gt; mp;</span><br><span class="line">mp[<span class="string">&#x27;c&#x27;</span>] = <span class="number">20</span>;</span><br></pre></td></tr></table></figure>
+
+<p>(2) 通过迭代器访问</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(mpa&lt;<span class="type">char</span>, <span class="type">int</span>&gt;::iterator it = mp.<span class="built_in">begin</span>(); it != mp.<span class="built_in">end</span>(); it++)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%c %d\n&quot;</span>, it -&gt; first, it -&gt; second);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>it -&gt; first是当前映射的键， it -&gt; second是当前映射的值。</p>
+<p><strong>map会以键从小到大的顺序自动排序</strong></p>
+<h3 id="1-1-3-常用函数"><a href="#1-1-3-常用函数" class="headerlink" title="1.1.3 常用函数"></a>1.1.3 常用函数</h3><p>(1) find</p>
+<p>find(key)返回键为key的映射的迭代器</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mp[<span class="string">&#x27;b&#x27;</span>] = <span class="number">2</span>;</span><br><span class="line">map&lt;<span class="type">char</span>, <span class="type">int</span>&gt;::iterator it = mp.<span class="built_in">find</span>(<span class="string">&#x27;b&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>(2) erase</p>
+<ul>
+<li>删除单个元素</li>
+</ul>
+<p>mp.erase(it)， it为需要删除的元素迭代器</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">map&lt;<span class="type">char</span>, <span class="type">int</span>&gt;::iterator it = mp.<span class="built_in">find</span>(<span class="string">&#x27;b&#x27;</span>);</span><br><span class="line">mp.<span class="built_in">erase</span>(it);</span><br></pre></td></tr></table></figure>
+
+<p>mp.erase(key), key为欲删除的映射的键</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mp.<span class="built_in">erase</span>(<span class="string">&#x27;b&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>删除一个区间内的所有元素</li>
+</ul>
+<p>mp.erase(first, last), first与last均为迭代器，删除区间为[first, last)</p>
+<p>(3) size</p>
+<p>size()用来获得map中映射的对数</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mp.<span class="built_in">size</span>();</span><br></pre></td></tr></table></figure>
+
+<p>(4) clear</p>
+<p>clear用来清空map中的所有元素</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mp.<span class="built_in">clear</span>();</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-2-unordered-map"><a href="#1-2-unordered-map" class="headerlink" title="1.2 unordered_map"></a>1.2 unordered_map</h2><p>内部无序，用法与map类似</p>
+<h3 id="1-2-1-常用函数"><a href="#1-2-1-常用函数" class="headerlink" title="1.2.1 常用函数"></a>1.2.1 常用函数</h3><p>(1) empty</p>
+<p>为空返回true，不空返回false</p>
+<p>(2) insert</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">unordered_map&lt;string,<span class="type">double</span>&gt; myrecipe</span></span><br><span class="line"><span class="function">pair&lt;string,<span class="type">double</span>&gt; <span class="title">myshopping</span> <span class="params">(<span class="string">&quot;baking powder&quot;</span>,<span class="number">0.3</span>)</span></span>;</span><br><span class="line">mypantry = &#123;&#123;<span class="string">&quot;milk&quot;</span>,<span class="number">2.0</span>&#125;,&#123;<span class="string">&quot;flour&quot;</span>,<span class="number">1.5</span>&#125;&#125;;</span><br><span class="line"></span><br><span class="line">myrecipe.<span class="built_in">insert</span> (myshopping);                        <span class="comment">// 复制插入</span></span><br><span class="line">myrecipe.<span class="built_in">insert</span> (<span class="built_in">make_pair</span>&lt;string,<span class="type">double</span>&gt;(<span class="string">&quot;eggs&quot;</span>,<span class="number">6.0</span>)); <span class="comment">// 移动插入</span></span><br><span class="line">myrecipe.<span class="built_in">insert</span> (mypantry.<span class="built_in">begin</span>(), mypantry.<span class="built_in">end</span>());  <span class="comment">// 范围插入    myrecipe.insert (&#123;&#123;&quot;sugar&quot;,0.8&#125;,&#123;&quot;salt&quot;,0.1&#125;&#125;);    // 初始化数组插入(可以用二维一次插入多个元素，也可以用一维插入一个元素)</span></span><br><span class="line">myrecipe[<span class="string">&quot;coffee&quot;</span>] = <span class="number">10.0</span>;  <span class="comment">//数组形式插入</span></span><br></pre></td></tr></table></figure>
+
+<p>(3) count</p>
+<p>count(key) 检查unordered_map容器是否存在具有给定键的值，如果存在，返回1，否则返回0。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mp[<span class="string">&#x27;b&#x27;</span>] = <span class="number">2</span>;</span><br><span class="line">mp.<span class="built_in">count</span>(<span class="string">&#x27;b&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-递归"><a href="#2-递归" class="headerlink" title="2 递归"></a>2 递归</h2><h3 id="2-1-最长公共前缀"><a href="#2-1-最长公共前缀" class="headerlink" title="2.1 最长公共前缀"></a>2.1 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-common-prefix/">最长公共前缀</a></h3><p>用$LCP(S_1…S_n)$表示字符串$S_1…S_n$的最长公共前缀，可以得到如下结论：<br>$$<br>LCP(S_1…S_2)&#x3D;LCP(LCP(LCP(S_1,S_2),S_3),…S_n)<br>$$<br>如果尚未便利完所有的字符串时，最长公共前缀已经是空串，则最长公共前缀一定是空串，无需继续遍历，直接返回空串即可。</p>
+<p>$LCP(S_1,S_2)$直接依次比较各位是否对应相等即可。</p>
+<h3 id="2-2-合并两个有序链表"><a href="#2-2-合并两个有序链表" class="headerlink" title="2.2 合并两个有序链表"></a>2.2 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-two-sorted-lists/">合并两个有序链表</a></h3><p>递归地定义两个链表的合并（merge）操作：<br>$$<br>\left{<br>  \begin{matrix}<br>  list1[0] + merge(list1[1:],list2) \quad list1[0]&lt;list2[0]    \<br>  list2[0] + merge(list1,list2[1:])    \quad otherwise<br>  \end{matrix}<br>  \right.<br>$$</p>
+<p>也就是，两个链表头部值较小的一个节点与剩下元素的merge操作后合并。</p>
+<h3 id="2-3-二叉树遍历"><a href="#2-3-二叉树遍历" class="headerlink" title="2.3 二叉树遍历"></a>2.3 二叉树遍历</h3><p><strong>递归三要素</strong></p>
+<ul>
+<li>确定递归函数的参数和返回值</li>
+<li>确定终止条件</li>
+<li>确定单层递归的逻辑</li>
+</ul>
+<p>前序遍历</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">traversal</span><span class="params">(TreeNode* cur, vector&lt;<span class="type">int</span>&gt;&amp; vec)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(cur == <span class="literal">NULL</span>)	<span class="keyword">return</span> ;</span><br><span class="line">  vec.<span class="built_in">push_back</span>(cur -&gt; val);	<span class="comment">//中</span></span><br><span class="line">  <span class="built_in">traversal</span>(cur -&gt; left, vec);	<span class="comment">//左</span></span><br><span class="line">  <span class="built_in">traversal</span>(cur -&gt; right, vec);	<span class="comment">//右</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>中序遍历</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">traversal</span><span class="params">(TreeNode* cur, vector&lt;<span class="type">int</span>&gt;&amp; vec)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(cur == <span class="literal">NULL</span>)	<span class="keyword">return</span> ;</span><br><span class="line">  <span class="built_in">traversal</span>( cur -&gt; left, vec);	<span class="comment">//左</span></span><br><span class="line">  vec.<span class="built_in">push_back</span>(cur -&gt; val);	<span class="comment">//中</span></span><br><span class="line">  <span class="built_in">traversal</span>(cur -&gt; right, vec);	<span class="comment">//右</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>后序遍历</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">traversal</span><span class="params">(TreeNode* cur, vector&lt;<span class="type">int</span>&gt;&amp; vec)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(cur == <span class="literal">NULL</span>)	<span class="keyword">return</span> ;</span><br><span class="line">  <span class="built_in">traversal</span>( cur -&gt; left, vec);	<span class="comment">//左</span></span><br><span class="line">  <span class="built_in">traversal</span>(cur -&gt; right, vec);	<span class="comment">//右</span></span><br><span class="line">  vec.<span class="built_in">push_back</span>(cur -&gt; val);	<span class="comment">//中</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>完整代码（前序）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">preorderTraversal</span><span class="params">(TreeNode* root)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  vector&lt;<span class="type">int</span>&gt; result;</span><br><span class="line">  <span class="built_in">traversal</span>(root, result);</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">traversal</span><span class="params">(TreeNode* cur, vector&lt;<span class="type">int</span>&gt;&amp; vec)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(cur == <span class="literal">NULL</span>)	<span class="keyword">return</span> ;</span><br><span class="line">  vec.<span class="built_in">push_back</span>(cur -&gt; val);	<span class="comment">//中</span></span><br><span class="line">  <span class="built_in">traversal</span>(cur -&gt; left, vec);	<span class="comment">//左</span></span><br><span class="line">  <span class="built_in">traversal</span>(cur -&gt; right, vec);	<span class="comment">//右</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4-对称二叉树"><a href="#2-4-对称二叉树" class="headerlink" title="2.4 对称二叉树"></a>2.4 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/symmetric-tree/">对称二叉树</a></h3><p>通过“同步移动” 两个指针的方法来遍历这颗树，p指针和q指针一开始都指向这颗树的根，然后p右移时，q左移，p左移时，q右移。每次检查当前p和q节点的值是否相等，如果相等再判断左右子树是否对称。</p>
+<p>递归边界，即为p、q节点有一个为空，或者均为空。</p>
+<h3 id="2-5-二叉树的最大深度"><a href="#2-5-二叉树的最大深度" class="headerlink" title="2.5 二叉树的最大深度"></a>2.5 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/">二叉树的最大深度</a></h3><p>如果我们知道了左子树和右子树的最大深度 l 和 r，那么该二叉树的最大深度即为<br>$$<br>max(l,r) +1<br>$$<br>而左子树和右子树的最大深度同样可以如下计算。递归在访问到空节点时退出。</p>
+<h3 id="2-6-相同的树"><a href="#2-6-相同的树" class="headerlink" title="2.6 相同的树"></a>2.6 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/same-tree/">相同的树</a></h3><p><strong>深度优先搜索</strong></p>
+<p>递归边界：两个二叉树都为空，则两个二叉树相同；如果有且仅有一个为空，则两个二叉树不相同。</p>
+<p>如果两个二叉树都不为空，首先判断它们根节点的值是否相同，若不相同，则两个二叉树一定不同，若相同，再分别判断两个二叉树的左子树是否相同以及右子树是否相同。</p>
+<h3 id="2-7-将有序数组转换为二叉搜索树"><a href="#2-7-将有序数组转换为二叉搜索树" class="headerlink" title="2.7 将有序数组转换为二叉搜索树"></a>2.7 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/convert-sorted-array-to-binary-search-tree/">将有序数组转换为二叉搜索树</a></h3><p>二叉搜索树(Binary Search Tree, BST) 是一棵数据域有序的二叉树，即对树上的每个结点，都满足其左子树上所有结点的数据域均小于或等于根结点的数据域，右子树上所有结点的数据域均大于根结点的数据域。</p>
+<p>二叉搜索树的中序遍历是升序序列。我们可以选择中间数字作为二叉搜索树的根节点，这样分给左右子树的数字个数相同或只相差1，可以使得树保持平衡。如果数组长度是奇数，则根节点的选择是唯一的，如果数组长度是偶数，则可以选择中间位置左边的数字作为根节点，或者选择中间位置右边的数字作为根节点，选择不同的数字作为根节点则创建的平衡二叉搜索树也是不同的。</p>
+<p>确定平衡二叉搜索树的根节点后，其余的数字分别位于平衡二叉搜索树的左子树和右子树中，左子树和右子树分别也是平衡二叉搜索树，因此可以通过递归方式创建平衡二叉搜索树。</p>
+<h3 id="2-8-平衡二叉树"><a href="#2-8-平衡二叉树" class="headerlink" title="2.8 平衡二叉树"></a>2.8 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/balanced-binary-tree/">平衡二叉树</a></h3><p>定义函数height，用于计算二叉树中任意一个节点p的高度<br>$$<br>height(p)&#x3D;\left{<br>  \begin{matrix}<br>  0 \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad  p&#x3D;NULL    \<br>  max(height(p.left),height(p.right))+1    \quad otherwise<br>  \end{matrix}<br>  \right.<br>$$<br>对于判断二叉树是否平衡，类似于二叉树的前序遍历，即对于当前遍历到的节点，首先计算左右子树的高度，如果左右子树的高度差不超过1，再分别 递归地遍历左右节点，并判断左子树和右子树是否平衡。</p>
+<h3 id="2-9-二叉树的最小深度"><a href="#2-9-二叉树的最小深度" class="headerlink" title="2.9 二叉树的最小深度"></a>2.9 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-depth-of-binary-tree/">二叉树的最小深度</a></h3><p>结点的深度是指从根节点（深度为1）开始自顶向下逐层累加至该节点时的深度值。</p>
+<p>使用深度优先搜索的方法，遍历整棵树，记录最小深度。对于每个非叶子节点，我们只需要分别计算其左右子树的最小叶子节点深度。</p>
+<h2 id="3-栈"><a href="#3-栈" class="headerlink" title="3 栈"></a>3 栈</h2><h3 id="3-1-有效的括号"><a href="#3-1-有效的括号" class="headerlink" title="3.1 有效的括号"></a>3.1 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/valid-parentheses/">有效的括号</a></h3><p>根据给定的字符串s，当我们遇到一个左括号时，期望在后续有一个相同类型的右括号将其闭合，由于后遇到的左括号要先闭合，因此可采用栈这一数据结构。</p>
+<p>当我们遇到一个右括号时，我们需要用一个同类型的左括号闭合，因此取出栈顶的左括号判断它们是否类型相同，如果不同类或者栈中没有左括号，那么此字符串无效。</p>
+<p>采用栈存储字符串中的左括号，哈希表存储每一种括号，键为右括号，值为同类型的左括号。</p>
+<h2 id="4-双指针"><a href="#4-双指针" class="headerlink" title="4 双指针"></a>4 双指针</h2><h3 id="4-1-删除有序数组中的重复项"><a href="#4-1-删除有序数组中的重复项" class="headerlink" title="4.1 删除有序数组中的重复项"></a>4.1 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/">删除有序数组中的重复项</a></h3><p>定义两个指针 fast 和 slow 分别为快指针和慢指针，快指针表示遍历数组到达的下标位置，慢指针表示下一个不同元素要填入的下标位置，初始时两个指针均指向下标1。</p>
+<p>假设数组 nums 的长度为 n，将快指针 fast 依次遍历从1到n-1的每个位置，对于每个位置，如果$nums[fast] \neq nums[fast -1]$ ，说明nums[fast]遇到了与值不同的元素，因此将 nums[fast] 的值复制给 nums[slow] ，然后将slow 的值加1。</p>
+<p>遍历结束后，nums[0~slow-1] 即为不含重复项的每个元素，新的长度即为slow。</p>
+<h3 id="4-2-合并两个有序数组"><a href="#4-2-合并两个有序数组" class="headerlink" title="4.2 合并两个有序数组"></a>4.2 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-sorted-array/">合并两个有序数组</a></h3><p>将两个数组看作队列，每次从两个数组头部去除较小的数字放到结果中。两个数组分别设置指针p1和p2来作为队列的头部指针。</p>
+<h3 id="4-3-环形链表"><a href="#4-3-环形链表" class="headerlink" title="4.3 环形链表"></a>4.3 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/linked-list-cycle/">环形链表</a></h3><p>定义两个指针，一快一慢。慢指针每次只移动一步，而快指针每次移动两步。初始时，慢指针在位置head，快指针在位置head.next。如果在移动过程中，慢指针追上了快指针（快指针领先慢指针若干环），说明该链表为环形链表。</p>
+<h3 id="4-4-盛最多水的容器"><a href="#4-4-盛最多水的容器" class="headerlink" title="4.4 盛最多水的容器"></a>4.4 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/container-with-most-water/">盛最多水的容器</a></h3><p>初始时，左右指针 (left, right) 分别指向数组的左右两端，此时它们可以容纳的水量为$min(hegiht[left],height[right])<em>(right-left)$。此时我们需要移动一个指针，直觉告诉我们应该移动对应高度较小的那个指针，因为容纳的水量是由$两指针指向的高度中较小值</em>指针间的距离$决定的。如果移动数字较大的那个指针，那么“两个指针指向的高度较小值”不会增加，因为“指针间的距离”会减小，所以乘积会减小。<strong>因此我们应该移动高度较小的那个指针</strong>。</p>
+<p>答案就是我们每次以双指针为左右边界计算出的容量中的最大值。</p>
+<h3 id="4-5-三数之和"><a href="#4-5-三数之和" class="headerlink" title="4.5 三数之和"></a>4.5 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/3sum/">三数之和</a></h3><p>排序+双指针</p>
+<p>如果我们直接使用三重循环枚举三元组，时间复杂度至少为$O(N^3)$，在这之后，我们还需要使用哈希表进行去重操作，得到不包含重复三元组的最终答案。</p>
+<p>“不重复”需要保证：第二重循环枚举到的元素不小于当前第一重循环枚举到的元素；第三重循环枚举到的元素不小于第二重枚举到的元素。</p>
+<p>也就是，我们枚举的三元组$(a,b,c)$满足$a\leq b \leq c$, 保证只有$(a,b,c)$这个顺序会被枚举到。同时，对于每一重循环而言，相邻两次枚举的元素不能相同，否则也会造成重复。</p>
+<p>如果我们固定了前两重循环枚举到的元素a和b，那么只有唯一的c满足$a+b+c&#x3D;0$。当第二重循环往后枚举一个元素$b’$时，由于$b’&gt;b$，一定有$c’&lt;c$。也就是说，我们可以从小到大枚举b，同时从大到小枚举c，即第二重循环和第三重循环实际上是并列关系。那么，我们就可以保持第二重循环不变，而将第三重循环变成一个从数组最右端开始向左移的指针。</p>
+<h3 id="4-6-最接近的三数之和"><a href="#4-6-最接近的三数之和" class="headerlink" title="4.6 最接近的三数之和"></a>4.6 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/3sum-closest/">最接近的三数之和</a></h3><p>排序+双指针</p>
+<p>首先考虑枚举第一个元素a，对于剩下的两个元素b和c，我们希望它们的和最接近$target - a$。对于b和c，我们可以考虑对整个数组进行升序排序。借助双指针，用$p_b$和$p_c$分别表示指向b和c的指针，初始时 ，$p_b$指向位置i+1，$p_c$指向位置n-1。在每一次枚举的过程中，我们用$a+b+c$ 来更新答案。</p>
+<ul>
+<li>如果$a + b + c \geq target$，那么就将$p_c$向左移动一个位置</li>
+<li>如果$a + b + c \leq target$，那么就将$p_b$向右移动一个位置</li>
+</ul>
+<h2 id="5-字符串"><a href="#5-字符串" class="headerlink" title="5 字符串"></a>5 字符串</h2><h3 id="5-1-KMP（字符串匹配）算法"><a href="#5-1-KMP（字符串匹配）算法" class="headerlink" title="5.1 KMP（字符串匹配）算法"></a>5.1 KMP（字符串匹配）算法</h3><h4 id="5-1-1-next数组"><a href="#5-1-1-next数组" class="headerlink" title="5.1.1 next数组"></a>5.1.1 next数组</h4><p>next[i] 表示使子串 s[0…i] 的前缀 s[0…k]等于后缀 s[i-k…i] 的最大k，前后缀可以部分重叠，但不能是 s[0…i] 本身，如果找不到相等的前后缀，那么就令 next[i] &#x3D; -1，显然，next[i] 就是所求最长相等前后缀中前缀最后一位的下标。</p>
+<p>求解过程：</p>
+<ul>
+<li>初始化 next 数组，令 j &#x3D; next [0] &#x3D; -1</li>
+<li>让 i 在 1～ len - 1 范围遍历，对每个 i ，执行 3、4，以求解 next[i]</li>
+<li>不断令 j &#x3D; next [j] , 直到 j 回退为 -1，或是 s[i] &#x3D;&#x3D; s[j  + 1] 成立</li>
+<li>如果 s[i] &#x3D;&#x3D; s[j + 1]，则 next[i] &#x3D; j + 1；否则 next[i] &#x3D; j</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// getNext 求解长度为 len 的字符串 s 的 next 数组</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">getNext</span><span class="params">(<span class="type">char</span> s[], <span class="type">int</span> len)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">  	<span class="type">int</span> j = <span class="number">-1</span>;</span><br><span class="line">  	next[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">  	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">      &#123;</span><br><span class="line">      	<span class="keyword">while</span>(j != <span class="number">-1</span> &amp;&amp; s[i] != s[j+<span class="number">1</span>])</span><br><span class="line">          &#123;</span><br><span class="line">            j = next[j];</span><br><span class="line">          &#125;</span><br><span class="line">      	<span class="keyword">if</span>(s[i] == s[j+<span class="number">1</span>])</span><br><span class="line">          &#123;</span><br><span class="line">            j++;</span><br><span class="line">          &#125;</span><br><span class="line">      	next[i] = j;   </span><br><span class="line">    &#125;</span><br><span class="line">  	</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-1-2-KMP算法"><a href="#5-1-2-KMP算法" class="headerlink" title="5.1.2 KMP算法"></a>5.1.2 KMP算法</h4><p>给定一个文本串 text 和一个模式串 pattern，然后判断模式串pattern 是否是文本串text的子串。next 数组的含义就是当 j+1 位失配时，j 应该回退到的位置。</p>
+<p>一般思路：</p>
+<ul>
+<li>初始化 j &#x3D; -1，表示pattern 当前已被匹配的最后位</li>
+<li>让 i 遍历文本串 text，对每个i，执行 3、4步来试图匹配 next[i] 和 pattern[j+1]</li>
+<li>不断令 j &#x3D; next[j]，直到 j 回退为-1，或是 text[i] &#x3D;&#x3D; pattern [j+1] 成立</li>
+<li>如果 text[i] &#x3D;&#x3D; pattern [j+1] 成立，则令 j++。如果 j 达到 m-1，说明pattern 是 text 的子串，则返回true</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// KMP算法，判断 pattern 是否是 text 的子串</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">KMP</span><span class="params">(<span class="type">char</span> text[], <span class="type">char</span> pattern[])</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    <span class="type">int</span> n = <span class="built_in">strlen</span>(text), m = <span class="built_in">strlen</span>(pattern);</span><br><span class="line">  	<span class="built_in">getNext</span>(pattern, m);</span><br><span class="line">  	<span class="type">int</span> j = <span class="number">-1</span>;</span><br><span class="line">  	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span> ; i &lt; n ; i++)</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">while</span>(j != <span class="number">-1</span> &amp;&amp; text[i] != pattern[j+<span class="number">1</span>])</span><br><span class="line">          &#123;</span><br><span class="line">            j = next[j];</span><br><span class="line">          &#125;</span><br><span class="line">      	<span class="keyword">if</span>(text[i] == pattern[j + <span class="number">1</span>])</span><br><span class="line">          &#123;</span><br><span class="line">            j++;</span><br><span class="line">          &#125;</span><br><span class="line">      	<span class="keyword">if</span>(j == m<span class="number">-1</span>)</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>考虑统计文本串 text 中模式串 pattern 出现的次数，当 j&#x3D;&#x3D;m-1时表示 pattern 的一次成功完全匹配，此时可以开始下一次匹配，而 j 需回退一定距离，而回退到 next[j] 最佳。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// KMP算法，统计 pattern 在 text 中出现的次数</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">KMP</span><span class="params">(<span class="type">char</span> text[], <span class="type">char</span> pattern[])</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    <span class="type">int</span> n = <span class="built_in">strlen</span>(text), m = <span class="built_in">strlen</span>(pattern);</span><br><span class="line">  	<span class="built_in">getNext</span>(pattern, m);</span><br><span class="line">  	<span class="type">int</span> ans = <span class="number">0</span>, j = <span class="number">-1</span>;</span><br><span class="line">  	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; n ; i++)</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">while</span>(j != <span class="number">-1</span> &amp;&amp; text[i] != pattern[j+<span class="number">1</span>])</span><br><span class="line">          &#123;</span><br><span class="line">            j = next[j];</span><br><span class="line">          &#125;</span><br><span class="line">      	<span class="keyword">if</span>(text[i] == pattern[j + <span class="number">1</span>])</span><br><span class="line">          &#123;</span><br><span class="line">            j++;</span><br><span class="line">          &#125;</span><br><span class="line">      	<span class="keyword">if</span>(j == m<span class="number">-1</span>)</span><br><span class="line">          &#123;</span><br><span class="line">          	ans ++;</span><br><span class="line">            j = next[j];</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  	<span class="keyword">return</span> ans;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>KMP算法优化，在最后语句 “next[i] &#x3D; j”之前，加上判断：如果有 pattern[i + 1]  !&#x3D; pattern [j + 1] 成立（即 pattern[i +1 ] !&#x3D;pattern[ next[i] + 1] ，则说明不需要回退，如果成立的话，则说明需要回退，就令next[i] 继承 next[j].</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">getNext</span><span class="params">(<span class="type">char</span> s[], <span class="type">int</span> len)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">  	<span class="type">int</span> j = <span class="number">-1</span>;</span><br><span class="line">  	next[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">  	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; len; i++)</span><br><span class="line">      &#123;</span><br><span class="line">      	<span class="keyword">while</span>(j != <span class="number">-1</span> &amp;&amp; s[i] != s[j+<span class="number">1</span>])</span><br><span class="line">          &#123;</span><br><span class="line">            j = next[j];</span><br><span class="line">          &#125;</span><br><span class="line">      	<span class="keyword">if</span>(s[i] == s[j+<span class="number">1</span>])</span><br><span class="line">          &#123;</span><br><span class="line">            j++;</span><br><span class="line">          &#125;</span><br><span class="line">      	<span class="keyword">if</span>(j == <span class="number">-1</span> || s[i+<span class="number">1</span>] != s[j+<span class="number">1</span>])</span><br><span class="line">        &#123;</span><br><span class="line">          next[i] = j;</span><br><span class="line">        &#125;</span><br><span class="line">      	<span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">          next[i] = next [j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  	</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2-常见操作"><a href="#5-2-常见操作" class="headerlink" title="5.2 常见操作"></a>5.2 常见操作</h3><h4 id="5-2-1-反转"><a href="#5-2-1-反转" class="headerlink" title="5.2.1 反转"></a>5.2.1 反转</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">string a;</span><br><span class="line"><span class="built_in">reverse</span>(a.<span class="built_in">begin</span>(), a.<span class="built_in">end</span>());</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-2-2-尾部加入数据"><a href="#5-2-2-尾部加入数据" class="headerlink" title="5.2.2 尾部加入数据"></a>5.2.2 尾部加入数据</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">string ans;</span><br><span class="line">ans.<span class="built_in">push_back</span>(<span class="string">&#x27;1&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-2-3-ctype-h"><a href="#5-2-3-ctype-h" class="headerlink" title="5.2.3 ctype.h"></a>5.2.3 ctype.h</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">isalnum</span>(str[i]);	<span class="comment">//检查是否为字母和数字</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">isalpha</span>(str[i]);	<span class="comment">//检查是否为字母</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">isdigit</span>(str[i]);	<span class="comment">//检查是否为数字</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">tolower</span>(str[i]);	<span class="comment">//转小写</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">toupper</span>(str[i]);	<span class="comment">//转大写</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="6-动态规划"><a href="#6-动态规划" class="headerlink" title="6 动态规划"></a>6 动态规划</h2><h3 id="6-1-最大子序和"><a href="#6-1-最大子序和" class="headerlink" title="6.1 最大子序和"></a>6.1 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-subarray/">最大子序和</a></h3><p>假设 nums数组的长度是n，下标从0到n-1.</p>
+<p>我们用 f(i) 代表以第 i 个数结尾的“连续子数组的最大和”，显然答案为：$max\ {f(i)}$</p>
+<p>因此我们只需要求出每个位置的 f(i)，然后返回f数组中的最大值即可。</p>
+<p>动态规划方程为：<br>$$<br>f(i)&#x3D;max {f(i-1)+nums[i],nums[i]}<br>$$<br>考虑到 f(i) 只和 f(i-1) 相关，因此我们可以只用一个变量 pre 来维护对于当前 f(i) 的 f(i-1) 的值是多少。</p>
+<h3 id="6-2-爬楼梯"><a href="#6-2-爬楼梯" class="headerlink" title="6.2 爬楼梯"></a>6.2 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/climbing-stairs/">爬楼梯</a></h3><p>我们用 f(x) 表示爬到第x级台阶的方案数，考虑到最后一步可能跨了一级台阶，也可能跨了两级台阶，我们可以列出如下转移方程：<br>$$<br>f(x) &#x3D; f(x-1) + f(x-2)<br>$$<br> 接下来讨论边界条件，我们是从第0级开始爬的，所以从第0级爬到第0级我们可以看作只有一种方案，即f(0) &#x3D; 1；从第0级到第1级也只有一种方案，即f(1)&#x3D;1。这两个作为边界条件就可以继续向后推导出第n级的结果。</p>
+<p>考虑到这里的 f(x) 只和 f(x-1)与f(x-2)有关，所以我们可以用“滚动数组思想”把空间复杂度优化为 <em>O</em>(1)。即用 f_1、f_2、f 依次存储f(x-1) 、f(x-2)、f(x)</p>
+<h3 id="6-3-买卖股票的最佳时机"><a href="#6-3-买卖股票的最佳时机" class="headerlink" title="6.3 买卖股票的最佳时机"></a>6.3 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/">买卖股票的最佳时机</a></h3><p>设 f(i) 表示以第 i 天为结尾时卖出股票获得的最大收入，最后要求的是<br>$$<br>f(i) &#x3D; max(f(i),0)<br>$$<br>f(i) 还与 f(i-1) 有关，$f(i-1) &#x3D; p[i-1] - minValue$, minValue表示以 i-1 结尾的前排数组的最小值，也可得到 $minValue &#x3D; p[i-1] - f(i-1)$</p>
+<p>因此我们可以得到如下关系： $f(i) &#x3D; max(p[i]-minValue, 0) &#x3D; max(p[i] - (p[i-1] - f(i-1)),0) &#x3D; max(p[i] - p[i-1] + f(i -1), 0)$</p>
+<h2 id="7-查找"><a href="#7-查找" class="headerlink" title="7 查找"></a>7 查找</h2><h3 id="7-1-二分查找"><a href="#7-1-二分查找" class="headerlink" title="7.1 二分查找"></a>7.1 二分查找</h3><h4 id="7-1-1-x的平方根"><a href="#7-1-1-x的平方根" class="headerlink" title="7.1.1 x的平方根"></a>7.1.1 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sqrtx/">x的平方根</a></h4><p>由于x平方根的整数部分ans是满足 $k^2 &lt;&#x3D; x$ 的最大k值，因此我们可以对k值进行二分查找。</p>
+<h2 id="8-分治"><a href="#8-分治" class="headerlink" title="8 分治"></a>8 分治</h2><h3 id="8-1-有序链表转换二叉搜素树"><a href="#8-1-有序链表转换二叉搜素树" class="headerlink" title="8.1 有序链表转换二叉搜素树"></a>8.1 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/convert-sorted-list-to-binary-search-tree/">有序链表转换二叉搜素树</a></h3><p>第一步是确定根节点，比较直观的想法是让根节点左子树中的节点个数与右子树中的节点个数尽可能接近。由此，我们可以找出链表元素的中位数作为根节点的值，如果链表中的元素个数为奇数，唯一的中间值为中位数；如果元素个数为偶数，那么维二的中间值都可以作为中位数。</p>
+<p>此时，小于中位数的元素组成了左子树，大于中位数的元素组成了右子树。然后，我们使用分治的思想，继续递归地对左右子树进行构造，找出对应的中位数作为根节点。</p>
+<p>具体地，设链表的左端点为left，右端点为right，包含关系为左闭右开。中位数的寻找方法：快慢指针法。初始时，快指针fast和慢指针slow均指向链表的左端点。我们将快指针fast向右移动两次的同时，将慢指针slow向右移动一次，直到快指针到达边界（即快指针到达右端点或快指针的下一个节点是右端点）。此时，慢指针对应的元素就是中位数。</p>
+<h2 id="9-贪心算法"><a href="#9-贪心算法" class="headerlink" title="9 贪心算法"></a>9 贪心算法</h2><p>贪心算法保证每次操作都是局部最优的，从而使最后得到的结果是全局最优的。</p>
+<h3 id="9-1-分配问题"><a href="#9-1-分配问题" class="headerlink" title="9.1 分配问题"></a>9.1 分配问题</h3><h4 id="9-1-1-Assign-Cookies（455）"><a href="#9-1-1-Assign-Cookies（455）" class="headerlink" title="9.1.1 Assign Cookies（455）"></a>9.1.1 Assign Cookies（455）</h4><ul>
+<li>题目</li>
+</ul>
+<p>有一群孩子和一堆饼干，每个孩子有一个饥饿度，每个饼干都有一个大小。每个孩子只能吃 最多一个饼干，且只有饼干的大小大于孩子的饥饿度时，这个孩子才能吃饱。求解最多有多少孩 子可以吃饱。</p>
+<ul>
+<li>题解</li>
+</ul>
+<p>给剩余孩子里最小饥饿度的孩子分配最小的能饱腹的饼干。把孩子和饼干分别排序，然后从饥饿度最小的孩子和大小最小的饼干出发。</p>
+<h4 id="9-1-2-Candy（135）"><a href="#9-1-2-Candy（135）" class="headerlink" title="9.1.2 Candy（135）"></a>9.1.2 Candy（135）</h4><ul>
+<li>题目</li>
+</ul>
+<p>一群孩子站成一排，每一个孩子有自己的评分。现在需要给这些孩子发糖果，规则是如果一 个孩子的评分比自己身旁的一个孩子要高，那么这个孩子就必须得到比身旁孩子更多的糖果；所 有孩子至少要有一个糖果。求解最少需要多少个糖果。</p>
+<ul>
+<li>题解</li>
+</ul>
+<p>无需进行排序，简单的两次遍历即可。在每次遍历中，只考虑并更新相邻一侧的大小关系。</p>
+<p>把所有孩子的糖果初始化为1，先从左往右遍历一遍，如果右边孩子的评分比左边的高，则右边孩子的糖果数更新为左边孩子的糖果数加1，再从右往左遍历一遍，如果左边孩子的评分比右边的高，且左边孩子当前的糖果数不大于右边孩子的糖果数，则左边孩子的糖果数更新为右边孩子的糖果数加1.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">num</span><span class="params">(size, <span class="number">1</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="built_in">accumulate</span>(num.<span class="built_in">begin</span>(), num.<span class="built_in">end</span>(),<span class="number">0</span>);	<span class="comment">//求和</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="9-1-3-种花问题（605）"><a href="#9-1-3-种花问题（605）" class="headerlink" title="9.1.3 种花问题（605）"></a>9.1.3 种花问题（605）</h4><ul>
+<li>题目</li>
+</ul>
+<p>假设有一个很长的花坛，一部分地块种植了花，另一部分却没有。可是，花不能种植在相邻的地块上，它们会争夺水源，两者都会死去。</p>
+<p>给你一个整数数组  flowerbed 表示花坛，由若干 0 和 1 组成，其中 0 表示没种植花，1 表示种植了花。另有一个数 n ，能否在不打破种植规则的情况下种入 n 朵花？能则返回 true ，不能则返回 false。</p>
+<ul>
+<li>题解</li>
+</ul>
+<p>从贪心的角度考虑，应该在不打破种植规则的情况下种下尽可能多的花，然后判断可以种入的花的最多数量是否大于或等于n。</p>
+<p><strong>已有的两朵花之间种植花的情况。</strong>假设花坛的下标 i 和下标 j 处都种植了花，其中$j-i \geq 2$，且在下标 $[i+1,j-1]$ 范围内没有种植花，则只有当$j-i \geq 4$时才可以在中间种更多的花，且可以种植花的下标为$[i+2,j-2]$ 。可以种植花的位置数为$p&#x3D;j-i-3$，当p为奇数时最多可以在该范围内种植$(p+1)&#x2F;2$，偶数时为$p&#x2F;2$。由于当p是偶数时，在整数除法的规则下两者相等。因此，都是最多可以在该范围内种植$(p+1)&#x2F;2$朵花，即最多可在该范围内种植$(j-i-2)&#x2F;2$朵花。</p>
+<p><strong>两朵花之外种植花的情况</strong>。假设花坛的下标 l 处是最左边的已经种植的花，下标 r 处是最右边的已经种植的花（即对于任意 k&lt;l 或 k&gt;r 都有 flowerbed[k] &#x3D; 0)。下标 l 左边有 l 个位置，当 $l \geq 2$时可以在下标范围[0,l-2]范围内种植花，可以种植花的位置数为 l-1，最多可以种植 l&#x2F;2 朵花。m为数组 flowerbed 的长度，下标 r 右边有 m-r-1个位置，可以种植花的位置数为m-r-2，最多可以种植 (m-r-1)&#x2F;2 朵花。</p>
+<p>如果花坛上没有任何花，则有m个位置可以种花，最多可以种植(m+1)&#x2F;2朵花。</p>
+<p><strong>具体做法</strong></p>
+<p>prev表示上一朵已经种植的花的下标位置，初始时为-1，表示尚未遇到任何已经种植的花。</p>
+<p>从左往右遍历数组，当遇到flowerbed[i] &#x3D; 1时根据prev和i的值计算上一个区间内可以种植花的最多数量，然后令prev &#x3D; i，继续遍历数组剩下的元素。</p>
+<p>遍历数组结束后，根据数组prev和长度m的值计算最后一个区间内可以种植花的最多数量。</p>
+<p>判断整个花坛内可以种入的花的最多数量是否大于或等于n。</p>
+<h3 id="9-2-区间问题"><a href="#9-2-区间问题" class="headerlink" title="9.2 区间问题"></a>9.2 区间问题</h3><h4 id="9-2-1-Non-overlapping-Intervals-435"><a href="#9-2-1-Non-overlapping-Intervals-435" class="headerlink" title="9.2.1 Non-overlapping Intervals(435)"></a>9.2.1 Non-overlapping Intervals(435)</h4><ul>
+<li>题目</li>
+</ul>
+<p>给定多个区间，计算让这些区间互不重叠所需要移除区间的最少个数。起止相连不算重叠。</p>
+<ul>
+<li>题解</li>
+</ul>
+<p>在选择要保留区间时，区间的结尾十分重要：选择的区间结尾越小，余留给其它区间的空间就越大，就越能保留更多的区间。因此，我们采取的贪心策略为：优先保留结尾小且不相交的区间。</p>
+<p>具体方法：先把区间按照结尾的大小进行增序排序，每次选择结尾最小且和前一个选择的区间不重叠的区间。</p>
+<h4 id="9-2-2-用最少数量的箭引爆气球（452）"><a href="#9-2-2-用最少数量的箭引爆气球（452）" class="headerlink" title="9.2.2 用最少数量的箭引爆气球（452）"></a>9.2.2 用最少数量的箭引爆气球（452）</h4><ul>
+<li><p>题目</p>
+</li>
+<li><p>题解</p>
+</li>
+</ul>
+<p>满足原本引爆的气球仍被引爆的条件下，向右移动箭的射出位置。因此，我们找出原本引爆的气球种右边界位置最靠左的一个即可，将箭的射出位置移动到这个右边界位置。</p>
+<p>考虑所有气球中右边界位置最靠左的一个，用一支箭引爆，然后将这支箭引爆的所有气球移除，并从剩下未被引爆的气球中，再选择右边界位置最靠左的一个，确定下一支箭，直到所有的气球都被引爆。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">findMinArrowShots</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; points)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (points.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">sort</span>(points.<span class="built_in">begin</span>(), points.<span class="built_in">end</span>(), [](<span class="type">const</span> vector&lt;<span class="type">int</span>&gt;&amp; u, <span class="type">const</span> vector&lt;<span class="type">int</span>&gt;&amp; v) &#123;</span><br><span class="line">            <span class="keyword">return</span> u[<span class="number">1</span>] &lt; v[<span class="number">1</span>];</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="type">int</span> pos = points[<span class="number">0</span>][<span class="number">1</span>];</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">const</span> vector&lt;<span class="type">int</span>&gt;&amp; balloon: points) &#123;</span><br><span class="line">            <span class="keyword">if</span> (balloon[<span class="number">0</span>] &gt; pos) &#123;</span><br><span class="line">                pos = balloon[<span class="number">1</span>];</span><br><span class="line">                ++ans;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/02/23/hello-world/" rel="prev" title="Hello World">
+                  <i class="fa fa-chevron-left"></i> Hello World
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/03/05/%E9%9D%A2%E7%BB%8F%E5%AD%A6%E4%B9%A0%E4%B8%8E%E7%BB%8F%E9%AA%8C/" rel="next" title="">
+                   <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
